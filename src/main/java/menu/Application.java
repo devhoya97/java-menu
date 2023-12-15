@@ -1,17 +1,18 @@
 package menu;
 
 import java.util.List;
+import menu.view.InputView;
+import menu.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        Coach coach1 = new Coach("AA");
-        Coach coach2 = new Coach("BB");
-        for (int i = 0; i < 5; i++) {
-            MenuRecommend.recommendMenu(List.of(coach1, coach2));
+        OutputView.printStart();
+        List<Coach> coaches = InputView.readCoaches();
+        InputView.addCoachesBannedMenus(coaches, MenuRecommend.getMenus());
+        for (int weekDayCount = 0; weekDayCount < 5; weekDayCount++) {
+            MenuRecommend.recommendMenu(coaches);
         }
-
-        System.out.println(coach1.getEatenMenus());
-        System.out.println(coach2.getEatenMenus());
+        OutputView.printResult(MenuRecommend.getCategoryHistories(), coaches);
+        OutputView.printEnd();
     }
 }

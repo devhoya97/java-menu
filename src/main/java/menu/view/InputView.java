@@ -13,6 +13,7 @@ public class InputView {
         while (true) {
             try {
                 List<String> coachNames = getTrimmedSplitInput();
+                validateSize(coachNames);
                 return coachNames.stream()
                         .map(Coach::new)
                         .collect(Collectors.toList());
@@ -35,9 +36,9 @@ public class InputView {
         }
     }
 
-    public static void addCoachesBannedMenus(List<Coach> coaches) {
+    public static void addCoachesBannedMenus(List<Coach> coaches, List<String> menus) {
         for (Coach coach : coaches) {
-
+            addBannedMenus(coach, menus);
         }
     }
 
@@ -48,6 +49,7 @@ public class InputView {
                 List<String> bannedMenus = getTrimmedSplitInput();
                 validateBannedMenuSize(bannedMenus);
                 bannedMenus.forEach(bannedMenu -> coach.addBannedMenu(bannedMenu, menus));
+                break;
             } catch (IllegalArgumentException illegalArgumentException) {
                 OutputView.printErrorMessage(illegalArgumentException.getMessage());
             }

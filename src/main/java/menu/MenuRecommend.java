@@ -47,4 +47,16 @@ public class MenuRecommend {
             }
         }
     }
+
+    public static List<String> getMenus() {
+        List<String> totalMenus = new ArrayList<>();
+        for (List<String> menusPerCategory : menus.values()) {
+            totalMenus.addAll(menusPerCategory);
+        }
+        return Collections.unmodifiableList(totalMenus);
+    }
+
+    public static List<String> getCategoryHistories() {
+        return Collections.unmodifiableList(categoryHistories);
+    }
 }
