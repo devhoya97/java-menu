@@ -1,7 +1,9 @@
 package menu;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,18 @@ public class MenuRecommend {
     private static final List<String> categoryHistories = new ArrayList<>();
 
     public static void recommendMenu(List<Coach> coaches) {
+        String category = selectCategory();
+        String menu = Randoms.shuffle(menus.get(category)).get(0);
+    }
 
+    private static String selectCategory() {
+        while (true) {
+            String category = categories.get(Randoms.pickNumberInRange(1, 5));
+            if (Collections.frequency(categoryHistories, category) >= 2) {
+                continue;
+            }
+            categoryHistories.add(category);
+            return category;
+        }
     }
 }
