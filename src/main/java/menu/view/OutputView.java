@@ -39,6 +39,10 @@ public class OutputView {
         System.out.println(sj);
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
+    }
+
     public static void printEnd() {
         System.out.println("추천을 완료했습니다.");
     }
