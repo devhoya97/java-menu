@@ -8,6 +8,7 @@ import menu.Coach;
 
 public class InputView {
     private static final String DELIMITER = ",";
+
     public static List<Coach> readCoaches() {
         System.out.println("\n코치의 이름을 입력해 주세요. (, 로 구분)");
         while (true) {
@@ -36,19 +37,19 @@ public class InputView {
         }
     }
 
-    public static void addCoachesBannedMenus(List<Coach> coaches, List<String> menus) {
+    public static void addCoachesBannedMenus(List<Coach> coaches) {
         for (Coach coach : coaches) {
-            addBannedMenus(coach, menus);
+            addBannedMenus(coach);
         }
     }
 
-    private static void addBannedMenus(Coach coach, List<String> menus) {
+    private static void addBannedMenus(Coach coach) {
         while (true) {
             try {
                 System.out.println("\n" + coach.getName() + "(이)가 못 먹는 메뉴를 입력해 주세요.");
                 List<String> bannedMenus = getTrimmedSplitInput();
                 validateBannedMenuSize(bannedMenus);
-                bannedMenus.forEach(bannedMenu -> coach.addBannedMenu(bannedMenu, menus));
+                bannedMenus.forEach(coach::addBannedMenu);
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
                 OutputView.printErrorMessage(illegalArgumentException.getMessage());

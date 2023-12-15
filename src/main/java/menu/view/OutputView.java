@@ -8,6 +8,7 @@ public class OutputView {
     private static final String DELIMITER = " | ";
     private static final String BASKET_START = "[ ";
     private static final String BASKET_END = " ]";
+
     public static void printStart() {
         System.out.println("점심 메뉴 추천을 시작합니다.");
     }

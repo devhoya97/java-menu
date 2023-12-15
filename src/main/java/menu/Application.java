@@ -8,7 +8,7 @@ public class Application {
     public static void main(String[] args) {
         OutputView.printStart();
         List<Coach> coaches = InputView.readCoaches();
-        InputView.addCoachesBannedMenus(coaches, MenuRecommend.getMenus());
+        InputView.addCoachesBannedMenus(coaches);
         for (int weekDayCount = 0; weekDayCount < 5; weekDayCount++) {
             MenuRecommend.recommendMenu(coaches);
         }
