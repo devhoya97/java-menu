@@ -1,13 +1,13 @@
 package menu;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 public class Coach {
     private final String name;
-    private final List<String> menus = new ArrayList<>();
+    private final List<String> eatenMenus = new ArrayList<>();
+    private final List<String> bannedMenus = new ArrayList<>();
 
     public Coach(String name) {
         String trimmedName = name.trim();
@@ -21,15 +21,26 @@ public class Coach {
         }
     }
 
-    public boolean addMenu(String menu) {
-        if (menus.contains(menu)) {
-            return false;
-        }
-        return menus.add(menu);
+    public void addBannedMenu(String bannedMenu, List<String> menus) {
+        validateBannedMenu(bannedMenu, menus);
+        bannedMenus.add(bannedMenu);
     }
 
-    public List<String> getMenus() {
-        return Collections.unmodifiableList(menus);
+    private void validateBannedMenu(String bannedMenu, List<String> menus) {
+        if (!menus.contains(bannedMenu)) {
+            throw new IllegalArgumentException("유효하지 않은 메뉴입니다.");
+        }
+    }
+
+    public boolean addMenu(String menu) {
+        if (eatenMenus.contains(menu)) {
+            return false;
+        }
+        return eatenMenus.add(menu);
+    }
+
+    public List<String> getEatenMenus() {
+        return Collections.unmodifiableList(eatenMenus);
     }
 
     public String getName() {
