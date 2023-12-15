@@ -34,4 +34,29 @@ public class InputView {
             throw new IllegalArgumentException("코치는 최소 2명, 최대 5명까지 입력받을 수 있습니다.");
         }
     }
+
+    public static void addCoachesBannedMenus(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+
+        }
+    }
+
+    private static void addBannedMenus(Coach coach, List<String> menus) {
+        while (true) {
+            try {
+                System.out.println("\n" + coach.getName() + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+                List<String> bannedMenus = getTrimmedSplitInput();
+                validateBannedMenuSize(bannedMenus);
+                bannedMenus.forEach(bannedMenu -> coach.addBannedMenu(bannedMenu, menus));
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printErrorMessage(illegalArgumentException.getMessage());
+            }
+        }
+    }
+
+    private static void validateBannedMenuSize(List<String> bannedMenus) {
+        if (bannedMenus.size() > 2) {
+            throw new IllegalArgumentException("코치당 못 먹는 메뉴는 최대 2개 입니다.");
+        }
+    }
 }

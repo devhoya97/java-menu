@@ -23,11 +23,14 @@ public class Coach {
 
     public void addBannedMenu(String bannedMenu, List<String> menus) {
         validateBannedMenu(bannedMenu, menus);
+        if (bannedMenu.isEmpty()) {
+            return;
+        }
         bannedMenus.add(bannedMenu);
     }
 
     private void validateBannedMenu(String bannedMenu, List<String> menus) {
-        if (!menus.contains(bannedMenu)) {
+        if (!menus.contains(bannedMenu) || bannedMenus.contains(bannedMenu)) {
             throw new IllegalArgumentException("유효하지 않은 메뉴입니다.");
         }
     }
