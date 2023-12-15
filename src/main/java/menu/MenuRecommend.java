@@ -23,7 +23,9 @@ public class MenuRecommend {
 
     public static void recommendMenu(List<Coach> coaches) {
         String category = selectCategory();
-        String menu = Randoms.shuffle(menus.get(category)).get(0);
+        for (Coach coach : coaches) {
+            addMenu(category, coach);
+        }
     }
 
     private static String selectCategory() {
@@ -34,6 +36,15 @@ public class MenuRecommend {
             }
             categoryHistories.add(category);
             return category;
+        }
+    }
+
+    private static void addMenu(String category, Coach coach) {
+        while (true) {
+            String menu = Randoms.shuffle(menus.get(category)).get(0);
+            if (coach.addMenu(menu)) {
+                return;
+            }
         }
     }
 }

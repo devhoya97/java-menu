@@ -1,6 +1,8 @@
 package menu;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Coach {
@@ -11,5 +13,9 @@ public class Coach {
             return false;
         }
         return menus.add(menu);
+    }
+
+    public List<String> getMenus() {
+        return Collections.unmodifiableList(menus);
     }
 }
