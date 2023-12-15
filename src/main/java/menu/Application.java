@@ -9,8 +9,8 @@ import java.util.Map;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        Coach coach1 = new Coach();
-        Coach coach2 = new Coach();
+        Coach coach1 = new Coach("AA");
+        Coach coach2 = new Coach("BB");
         for (int i = 0; i < 5; i++) {
             MenuRecommend.recommendMenu(List.of(coach1, coach2));
         }
