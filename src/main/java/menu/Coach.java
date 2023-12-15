@@ -33,7 +33,7 @@ public class Coach {
     }
 
     public boolean addMenu(String menu) {
-        if (eatenMenus.contains(menu)) {
+        if (eatenMenus.contains(menu) || bannedMenus.contains(menu)) {
             return false;
         }
         return eatenMenus.add(menu);
